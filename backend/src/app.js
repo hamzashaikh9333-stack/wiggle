@@ -16,8 +16,11 @@ app.use(
         "https://wiggle-33.netlify.app",
       ];
 
-      // allow requests with no origin (like mobile apps / curl)
-      if (!origin || allowedOrigins.includes(origin)) {
+      // Check if origin matches Railway pattern or is in allowed list
+      const isRailway = origin && origin.includes("railway.app");
+      const isAllowed = !origin || allowedOrigins.includes(origin) || isRailway;
+
+      if (isAllowed) {
         callback(null, true);
       } else {
         callback(new Error("Not allowed by CORS"));
