@@ -24,7 +24,7 @@
 .percentage {
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--accent-color);
+  color: #88ea9a;
   font-variant-numeric: tabular-nums;
   min-width: 45px;
   text-align: right;
@@ -36,14 +36,13 @@
   background: rgba(16, 185, 129, 0.1);
   border-radius: 10px;
   overflow: hidden;
-  border: 1px solid var(--border-color);
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .bar {
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, var(--accent-color) 0%, #34d399 100%);
+  background: rgba(255, 255, 255, 0.262);
   border-radius: 10px;
   position: relative;
   overflow: hidden;
@@ -53,9 +52,9 @@
   height: 100%;
   background: linear-gradient(
     90deg,
-    var(--accent-color) 0%,
-    #34d399 50%,
-    #6ee7b7 100%
+    
+    #88ea9a 50%,
+    #0ede42 100%
   );
   border-radius: 10px;
   transition: width 0.3s ease-out;

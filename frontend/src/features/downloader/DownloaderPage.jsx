@@ -3,15 +3,26 @@ import { URLInput } from './components/URLInput';
 import { DownloadButton } from './components/DownloadButton';
 import { ErrorAlert } from './components/ErrorAlert';
 import { SuccessAlert } from './components/SuccessAlert';
+import { ProgressBar } from './components/ProgressBar';
+import { FormatSelector } from './components/FormatSelector';
 import { useDownload } from './hooks/useDownload';
 import styles from './DownloaderPage.module.css';
 
 export const DownloaderPage = () => {
   const [url, setUrl] = useState('');
-  const { loading, error, success, download, clearError } = useDownload();
+  const {
+    loading,
+    error,
+    success,
+    progress,
+    selectedFormat,
+    download,
+    setSelectedFormat,
+    clearError,
+  } = useDownload();
 
   const handleDownload = async () => {
-    await download(url);
+    await download(url, selectedFormat);
     if (!error) {
       setUrl('');
     }
@@ -39,16 +50,16 @@ export const DownloaderPage = () => {
               <path d="M8 9v6" />
               <path d="M16 7v10" />
             </svg>
-            <h1 className={styles.title}>MP3 Converter</h1>
+            <h1 className={styles.title}>wiggle</h1>
           </div>
           <p className={styles.subtitle}>
-            Download audio from YouTube videos in high quality MP3 format
+            Download audio & videos from YouTube in multiple formats
           </p>
         </div>
 
         <div className={styles.card}>
           {success && (
-            <SuccessAlert message="Audio downloaded successfully! ✓" />
+            <SuccessAlert message="Download completed successfully! ✓" />
           )}
 
           {error && (
@@ -66,10 +77,19 @@ export const DownloaderPage = () => {
             />
           </div>
 
+          <FormatSelector
+            selectedFormat={selectedFormat}
+            onFormatChange={setSelectedFormat}
+            disabled={loading}
+          />
+
+          <ProgressBar progress={progress} isVisible={loading} />
+
           <DownloadButton
             onClick={handleDownload}
             loading={loading}
             disabled={!url.trim()}
+            format={selectedFormat}
           />
 
           <div className={styles.features}>
@@ -77,15 +97,19 @@ export const DownloaderPage = () => {
             <ul className={styles.featuresList}>
               <li>
                 <span className={styles.checkmark}>✓</span>
-                Convert YouTube videos to MP3
+                Convert YouTube to MP3 (128kbps)
               </li>
               <li>
                 <span className={styles.checkmark}>✓</span>
-                High quality audio extraction
+                High quality audio (M4A format)
               </li>
               <li>
                 <span className={styles.checkmark}>✓</span>
-                Fast and reliable downloads
+                Download videos (720p & 1080p)
+              </li>
+              <li>
+                <span className={styles.checkmark}>✓</span>
+                Real-time download progress tracking
               </li>
               <li>
                 <span className={styles.checkmark}>✓</span>

@@ -1,14 +1,14 @@
 /* Reset and Base Styles */
 :root {
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
+  --bg-primary: #232222;
+  --bg-secondary: #232222;
   --bg-tertiary: #334155;
-  --text-primary: #f1f5f9;
+  --text-primary: #b01c06;
   --text-secondary: #94a3b8;
-  --accent-color: #6366f1;
-  --accent-hover: #4f46e5;
-  --border-color: #475569;
-  --input-bg: #1e293b;
+  --accent-color: #b01c06;
+  --accent-hover: #8680ed;
+  --border-color: #8c4f4a;
+  --input-bg: #0e121a;
 }
 
 *,

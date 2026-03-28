@@ -1,6 +1,13 @@
 import styles from './DownloadButton.module.css';
 
-export const DownloadButton = ({ onClick, loading, disabled }) => {
+export const DownloadButton = ({ onClick, loading, disabled, format }) => {
+  const formatLabels = {
+    mp3: 'Download MP3 128kbps',
+    m4a: 'Download High Quality Audio',
+    '720': 'Download Video 720p',
+    '1080': 'Download Video 1080p',
+  };
+
   return (
     <button
       onClick={onClick}
@@ -24,7 +31,7 @@ export const DownloadButton = ({ onClick, loading, disabled }) => {
             <polyline points="7 10 12 15 17 10" />
             <line x1="12" y1="15" x2="12" y2="3" />
           </svg>
-          <span>Download MP3</span>
+          <span>{formatLabels[format] || 'Download'}</span>
         </>
       )}
     </button>

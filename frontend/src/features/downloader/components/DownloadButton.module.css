@@ -9,7 +9,7 @@
   font-weight: 600;
   letter-spacing: 0.5px;
   color: white;
-  background: linear-gradient(135deg, var(--accent-color) 0%, #4f46e5 100%);
+  background: var(--accent-color);
   border: none;
   border-radius: 0.75rem;
   cursor: pointer;

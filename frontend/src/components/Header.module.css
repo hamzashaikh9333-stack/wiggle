@@ -1,20 +1,15 @@
 .header {
-  background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(99, 102, 241, 0.1);
   padding: 1rem 0;
-  position: sticky;
   top: 0;
   z-index: 100;
+  font-family: cursive;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .logo {
@@ -22,19 +17,4 @@
   font-weight: 700;
   color: var(--text-primary);
   letter-spacing: -0.5px;
-}
-
-.nav {
-  display: flex;
-  gap: 2rem;
-}
-
-.link {
-  color: var(--text-secondary);
-  font-weight: 500;
-  transition: color 0.2s;
-}
-
-.link:hover {
-  color: var(--accent-color);
 }
