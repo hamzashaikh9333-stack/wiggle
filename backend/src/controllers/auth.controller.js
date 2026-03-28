@@ -19,28 +19,31 @@ export const downloadVideo = (req, res) => {
   let command = "";
 
   try {
+    // Base yt-dlp options with YouTube authentication fixes
+    const ytdlpBaseFlags = "-x --no-check-certificates --socket-timeout 30 --extractor-args youtube:skip=hls/dash --retries 3 --quiet";
+
     // 🔥 USE PYTHON yt-dlp (IMPORTANT)
     if (format === "mp3") {
       outputName = `${fileName}.mp3`;
-      command = `python3 -m yt_dlp -x --audio-format mp3 -o "${path.join(
+      command = `python3 -m yt_dlp ${ytdlpBaseFlags} --audio-format mp3 -o "${path.join(
         tempDir,
         fileName + ".%(ext)s"
       )}" "${url}"`;
     } else if (format === "m4a") {
       outputName = `${fileName}.m4a`;
-      command = `python3 -m yt_dlp -f bestaudio[ext=m4a] -o "${path.join(
+      command = `python3 -m yt_dlp ${ytdlpBaseFlags} -f bestaudio[ext=m4a] -o "${path.join(
         tempDir,
         fileName + ".m4a"
       )}" "${url}"`;
     } else if (format === "720") {
       outputName = `${fileName}.mp4`;
-      command = `python3 -m yt_dlp -f "bestvideo[height<=720]+bestaudio/best[height<=720]" --merge-output-format mp4 -o "${path.join(
+      command = `python3 -m yt_dlp ${ytdlpBaseFlags} -f "bestvideo[height<=720]+bestaudio/best[height<=720]" --merge-output-format mp4 -o "${path.join(
         tempDir,
         fileName + ".mp4"
       )}" "${url}"`;
     } else if (format === "1080") {
       outputName = `${fileName}.mp4`;
-      command = `python3 -m yt_dlp -f "bestvideo[height<=1080]+bestaudio/best[height<=1080]" --merge-output-format mp4 -o "${path.join(
+      command = `python3 -m yt_dlp ${ytdlpBaseFlags} -f "bestvideo[height<=1080]+bestaudio/best[height<=1080]" --merge-output-format mp4 -o "${path.join(
         tempDir,
         fileName + ".mp4"
       )}" "${url}"`;
