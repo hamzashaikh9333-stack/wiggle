@@ -1,7 +1,7 @@
-# Use Node.js 18 with Debian Bookworm (has Python 3.11)
+# Use Node.js 18 with Debian Bookworm
 FROM node:18-bookworm
 
-# Install Python 3.11, pip, and FFmpeg
+# Install Python, pip, ffmpeg
 RUN apt-get update && \
     apt-get install -y \
     python3 \
@@ -10,8 +10,8 @@ RUN apt-get update && \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Upgrade yt-dlp to latest version for better YouTube support
-RUN pip3 install --upgrade yt-dlp
+# 🔥 FIX: Install yt-dlp with PEP 668 bypass
+RUN pip3 install --upgrade yt-dlp --break-system-packages
 
 # Set working directory
 WORKDIR /app
@@ -22,11 +22,11 @@ COPY package*.json ./
 # Install Node dependencies
 RUN npm install
 
-# Copy application code
+# Copy rest of the code
 COPY . .
 
 # Expose port
 EXPOSE 3000
 
-# Start the server
+# Start app
 CMD ["npm", "start"]
