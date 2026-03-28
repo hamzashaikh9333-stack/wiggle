@@ -10,7 +10,7 @@ A robust Node.js/Express server that handles YouTube video downloads and MP3 con
 - ✅ **Error Handling** - Comprehensive error handling and validation
 - ✅ **CORS Support** - Cross-origin request support for frontend
 - ✅ **Environment Configuration** - Flexible configuration through `.env`
-- ✅ **Production Ready** - Optimized for production deployment
+- ✅ **Production Ready** - Optimized for production deployment.
 
 ## 🛠️ Tech Stack
 
