@@ -2,10 +2,7 @@ import express from "express";
 import cors from "cors";
 import authRouter from "./routes/auth.routes.js";
 import morgan from "morgan";
-import path from "path";
-import { fileURLToPath } from "url";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 
 app.use(express.json());
@@ -16,12 +13,14 @@ app.use(
       const allowedOrigins = [
         "http://localhost:5173",
         "http://localhost:3000",
+        "https://wiggle-production.up.railway.app",
         "https://wiggle-33.netlify.app",
       ];
 
-      // Check if origin matches Railway pattern or is in allowed list
+      // Check if origin matches Railway or Netlify pattern
       const isRailway = origin && origin.includes("railway.app");
-      const isAllowed = !origin || allowedOrigins.includes(origin) || isRailway;
+      const isNetlify = origin && origin.includes("netlify.app");
+      const isAllowed = !origin || allowedOrigins.includes(origin) || isRailway || isNetlify;
 
       if (isAllowed) {
         callback(null, true);
@@ -36,12 +35,9 @@ app.use(
 
 app.use("/api/auth", authRouter);
 
-// Serve frontend static files
-app.use(express.static(path.join(__dirname, "../../frontend/dist")));
-
-// SPA fallback - serve index.html for all non-API routes
-app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
+// Health check endpoint
+app.get("/api/health", (req, res) => {
+  res.json({ status: "Backend is running!", missingTools: [] });
 });
 
 export default app;

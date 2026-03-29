@@ -1,4 +1,4 @@
 {
-  "buildCommand": "cd ../frontend && npm install && npm run build && cd ../backend && apt-get update && apt-get install -y ffmpeg python3 python3-pip && pip3 install yt-dlp && npm install",
-  "startCommand": "node server.js"
+  "buildCommand": "apt-get update && apt-get install -y ffmpeg python3 python3-pip && pip3 install yt-dlp && npm install",
+  "startCommand": "npm start"
 }
