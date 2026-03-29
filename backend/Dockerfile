@@ -17,7 +17,7 @@ RUN pip3 install --upgrade yt-dlp --break-system-packages
 WORKDIR /app
 
 # Copy package files
-COPY package*.json ./
+COPY ./package*.json ./
 
 # Install Node dependencies
 RUN npm install
