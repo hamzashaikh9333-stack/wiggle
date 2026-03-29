@@ -13,7 +13,7 @@ app.use(
       const allowedOrigins = [
         "http://localhost:5173",
         "http://localhost:3000",
-        "https://wiggle-production.up.railway.app",
+        "https://wiggle-production-af1c.up.railway.app",
         "https://wiggle-33.netlify.app",
       ];
 
