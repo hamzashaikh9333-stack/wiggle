@@ -2,7 +2,10 @@ import express from "express";
 import cors from "cors";
 import authRouter from "./routes/auth.routes.js";
 import morgan from "morgan";
+import path from "path";
+import { fileURLToPath } from "url";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 
 app.use(express.json());
@@ -32,5 +35,13 @@ app.use(
 );
 
 app.use("/api/auth", authRouter);
+
+// Serve frontend static files
+app.use(express.static(path.join(__dirname, "../../frontend/dist")));
+
+// SPA fallback - serve index.html for all non-API routes
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
+});
 
 export default app;
