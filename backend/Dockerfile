@@ -1,7 +1,7 @@
-# Use Node.js 18 with Debian Bookworm
+# Use Node.js 18
 FROM node:18-bookworm
 
-# Install Python, pip, ffmpeg
+# Install system dependencies
 RUN apt-get update && \
     apt-get install -y \
     python3 \
@@ -10,23 +10,17 @@ RUN apt-get update && \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# 🔥 FIX: Install yt-dlp with PEP 668 bypass
+# Install yt-dlp
 RUN pip3 install --upgrade yt-dlp --break-system-packages
 
 # Set working directory
 WORKDIR /app
 
-# Copy package files
-COPY ./package*.json ./
-
-# Install Node dependencies
-RUN npm install
-
-# Copy rest of the code
+# ✅ IMPORTANT: Copy everything first
 COPY . .
 
-# Expose port
-EXPOSE 3000
+# Install dependencies
+RUN npm install
 
-# Start app
+# Start server
 CMD ["npm", "start"]
