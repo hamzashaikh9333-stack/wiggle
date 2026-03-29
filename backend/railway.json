@@ -1,4 +1,10 @@
 {
-  "buildCommand": "apt-get update && apt-get install -y ffmpeg python3 python3-pip && pip3 install yt-dlp && npm install",
-  "startCommand": "npm start"
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "NIXPACKS"
+  },
+  "deploy": {
+    "startCommand": "npm start",
+    "healthcheckPath": "/api/health"
+  }
 }
